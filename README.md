@@ -29,7 +29,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O Quiz elaborado traz a versatilidade de inserir diversas perguntas e ao fim retornar quantas respostas foram marcadas corretamente.
+Projeto elaborado onde traz um quiz com a versatilidade de inserir novas perguntas e ao fim retornar quantas respostas foram marcadas corretamente.
 
 
 ## :memo: Licença
