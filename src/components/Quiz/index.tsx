@@ -2,10 +2,18 @@ import React, {useState} from "react"
 import { QuestionAwnser } from "../QuestionAnswer"
 import { Result } from "../Result";
 import { ProgressBar } from "../ProgressBar";
+import { MouseEvent } from "react";
 
 import S from "./styles.module.scss"
 
-const Questions = [
+export interface Question {
+    id: number,
+    question: string,
+    answers: Array<string>,
+    correctAnswer: string,
+}
+
+const Questions: Array<Question> = [
     {
         id: 1,
         question: "Qual é o meu nome?",
@@ -32,7 +40,7 @@ export function Quiz() {
     const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] = useState(false);
     const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
 
-    const handleNextQuestion = () => {
+    const handleNextQuestion = () : void => {
         if(currentQuestionIndex < Questions.length -1){
             setCurrentQuestionIndex(currentQuestionNumber)
             
@@ -43,7 +51,7 @@ export function Quiz() {
         setIsCurrentQuestionAnswered(false);
     }
 
-    const handleAnswerQuestion = (event, question, userAnswer) => {
+    const handleAnswerQuestion = (event: MouseEvent<HTMLButtonElement>, question: Question, userAnswer: string) : void => {
         if (isCurrentQuestionAnswered){
             return
         }
@@ -60,7 +68,7 @@ export function Quiz() {
        
     }
 
-    const handleTryAgain = () => {
+    const handleTryAgain = () : void => {
         setIsTakingQuiz(true);
         setCurrentQuestionIndex(0);
         setCorrectAnswerCount(0);
@@ -83,13 +91,13 @@ export function Quiz() {
                             <p> {currentQuestion.question} </p>
                         </header>
 
-                        <uL className={S.answers}>
+                        <ul className={S.answers}>
                             {currentQuestion.answers.map(answer => (
-                                <lI key={answer}>
+                                <li key={answer}>
                                     <QuestionAwnser question = {currentQuestion} answer = {answer} handleAnswerQuestion = {handleAnswerQuestion}/>
-                                </lI>
+                                </li>
                             ))}
-                        </uL>
+                        </ul>
 
                         <button className={S.navigationBtn} onClick={handleNextQuestion}>
                             {navigationButtonText}

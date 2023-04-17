@@ -2,7 +2,12 @@ import classNames from "classnames"
 
 import S from "./styles.module.scss"
 
-export function ProgressBar({size, currentStep}){
+interface ProgressBarProps{
+    size: number
+    currentStep: number
+}
+
+export function ProgressBar({size, currentStep} : ProgressBarProps){
     return(
         <div className = {S.container}>
             <div className = {S.steps} style = {{gridTemplateColumns: `repeat(${size}, 1fr)`}}>
